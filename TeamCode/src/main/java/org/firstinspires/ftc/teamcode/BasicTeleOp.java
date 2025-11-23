@@ -30,8 +30,8 @@ public class BasicTeleOp extends LinearOpMode {
 
 
 // Reverse one motor so that forward power moves both wheels forward
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
-        leftDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
         ShootMotor.setDirection(DcMotor.Direction.REVERSE); // Set shooter motor direction
 
         telemetry.addData("Status", "Initialized");
