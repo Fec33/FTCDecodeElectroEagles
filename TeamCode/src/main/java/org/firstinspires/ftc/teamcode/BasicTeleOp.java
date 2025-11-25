@@ -62,7 +62,7 @@ public class BasicTeleOp extends LinearOpMode {
             rightDrive.setPower(rightPower);
 
 // Keep shooter motor running at all times
-            ShootMotor.setPower(0.6);
+            ShootMotor.setPower(0.8);
 
 // Set servo power when right bumper is pressed
             if (gamepad2.right_bumper) { // Check if the trigger value is > 0.5
