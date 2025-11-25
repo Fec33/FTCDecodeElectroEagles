@@ -49,24 +49,24 @@ public class BasicTeleOp extends LinearOpMode {
 
 // Use left stick for forward/back, right stick for turning
             drive = -gamepad2.left_stick_y; // Forward is negative on joystick
-            turn = gamepad2.left_stick_x;
+            turn = gamepad2.right_stick_x;
 
 
 // Combine drive and turn for differential steering
-            leftPower = drive * 0.5 + turn;
-            rightPower = drive * 0.5 - turn;
+            leftPower = drive * 0.5 - turn;
+            rightPower = drive * 0.5 + turn;
 
 // Set motor power
             leftDrive.setPower(leftPower);
             rightDrive.setPower(rightPower);
 
 // Keep shooter motor running at all times
-            ShootMotor.setPower(0.9);
+            ShootMotor.setPower(0.6);
 
 // Set servo power when right bumper is pressed
             if (gamepad2.right_bumper) { // Check if the trigger value is > 0.5
-                servoShoot1.setPower(-1.0);
-                servoShoot2.setPower(1.0);
+                servoShoot1.setPower(-0.2);
+                servoShoot2.setPower(0.2);
             } else {
                 servoShoot1.setPower(0.0);
                 servoShoot2.setPower(0.0);
