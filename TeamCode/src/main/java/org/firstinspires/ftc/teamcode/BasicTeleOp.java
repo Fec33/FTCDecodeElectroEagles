@@ -52,8 +52,8 @@ public class BasicTeleOp extends LinearOpMode {
 
 
 // Combine drive and turn for differential steering
-            leftPower = (drive * 0.8) + turn;
-            rightPower = (drive * 0.8) - turn;
+            leftPower = (drive * 0.8) - turn;
+            rightPower = (drive * 0.8) + turn;
 
 // Set motor power
             leftDrive.setPower(leftPower);
