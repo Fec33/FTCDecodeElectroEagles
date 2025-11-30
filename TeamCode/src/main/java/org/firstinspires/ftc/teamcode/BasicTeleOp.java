@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="Basic TeleOp", group="Linear Opmode")
 public class BasicTeleOp extends LinearOpMode {
-//Hello jvidk
     // Declare motors
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -53,8 +52,8 @@ public class BasicTeleOp extends LinearOpMode {
 
 
 // Combine drive and turn for differential steering
-            leftPower = (drive * 0.5) + turn;
-            rightPower = (drive * 0.5) - turn;
+            leftPower = (drive * 0.8) + turn;
+            rightPower = (drive * 0.8) - turn;
 
 // Set motor power
             leftDrive.setPower(leftPower);
