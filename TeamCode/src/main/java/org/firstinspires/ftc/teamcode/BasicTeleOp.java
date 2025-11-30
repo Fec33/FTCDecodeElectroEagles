@@ -61,8 +61,8 @@ public class BasicTeleOp extends LinearOpMode {
             ShootMotor.setPower(0.8);
 // Set shooter motor power when right trigger is pressed
             if (gamepad2.right_bumper) { // Check if the trigger value is > 0.5
-                servoShoot1.setPower(-0.2);
-                servoShoot2.setPower(0.2);
+                servoShoot1.setPower(-0.5);
+                servoShoot2.setPower(0.5);
             } else {
                 servoShoot1.setPower(0);
                 servoShoot2.setPower(0);
