@@ -54,8 +54,8 @@ public class BasicTeleOp extends LinearOpMode {
                 servoShoot1.setPower(0);
             }else {
 // Use left stick for forward/back, right stick for turning
-            drive = -gamepad2.left_stick_y; // Forward is negative on joystick
-            turn = gamepad2.right_stick_x;
+                drive = -gamepad2.left_stick_y; // Forward is negative on joystick
+                turn = gamepad2.right_stick_x;
 
 
 // Combine drive and turn for differential steering
