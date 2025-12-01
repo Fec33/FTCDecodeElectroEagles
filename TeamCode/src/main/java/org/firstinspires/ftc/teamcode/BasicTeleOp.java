@@ -46,6 +46,13 @@ public class BasicTeleOp extends LinearOpMode {
 // Run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
+            if (gamepad2.right_bumper) {
+                leftDrive.setPower(0);
+                rightDrive.setPower(0);
+                ShootMotor.setPower(0);
+                servoShoot2.setPower(0);
+                servoShoot1.setPower(0);
+            }else {
 // Use left stick for forward/back, right stick for turning
             drive = -gamepad2.left_stick_y; // Forward is negative on joystick
             turn = gamepad2.right_stick_x;
