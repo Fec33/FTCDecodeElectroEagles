@@ -59,13 +59,13 @@ public class BasicTeleOp extends LinearOpMode {
 
 
 // Combine drive and turn for differential steering
-            leftPower = (drive * 0.8) - turn;
-            rightPower = (drive * 0.8) + turn;
+                leftPower = (drive * 0.8) - turn;
+                rightPower = (drive * 0.8) + turn;
 
 // Set motor power
-            leftDrive.setPower(leftPower);
-            rightDrive.setPower(rightPower);
-            ShootMotor.setPower(-0.65);
+                leftDrive.setPower(leftPower);
+                rightDrive.setPower(rightPower);
+                ShootMotor.setPower(-0.65);
 // Set shooter motor power when right trigger is pressed
             if (gamepad2.right_bumper) { // Check if the trigger value is > 0.5
                 servoShoot1.setPower(-0.5);
