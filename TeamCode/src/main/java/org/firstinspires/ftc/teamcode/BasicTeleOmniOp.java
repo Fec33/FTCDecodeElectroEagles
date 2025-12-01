@@ -65,10 +65,10 @@ public class BasicTeleOmniOp extends LinearOpMode {
             double turn = gamepad2.right_stick_x;   // Controls robot rotation
 
             // Combine the joystick inputs into Mecanum drive powers
-            double frontLeftPower = (drive * 0.5) + strafe + turn;
-            double frontRightPower = (drive * 0.5) - strafe - turn;
-            double backLeftPower = (drive * 0.5) - strafe + turn;
-            double backRightPower = (drive * 0.5) + strafe - turn;
+            double frontLeftPower = (drive * 0.8) + strafe + turn;
+            double frontRightPower = (drive * 0.8) - strafe - turn;
+            double backLeftPower = (drive * 0.8) - strafe + turn;
+            double backRightPower = (drive * 0.8) + strafe - turn;
 
             // Normalize the values so no wheel power exceeds 1.0
             double maxPower = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
