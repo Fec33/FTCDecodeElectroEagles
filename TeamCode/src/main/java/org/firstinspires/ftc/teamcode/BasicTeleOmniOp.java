@@ -49,8 +49,16 @@ public class BasicTeleOmniOp extends LinearOpMode {
         waitForStart();
 
 // Run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-
+        while (opModeIsActive()){
+            if (gamepad2.right_bumper) {
+                frontLeftDrive.setPower(0);
+                frontRightDrive.setPower(0);
+                backLeftDrive.setPower(0);
+                backRightDrive.setPower(0);
+                ShootMotor.setPower(0);
+                servoShoot2.setPower(0);
+                servoShoot1.setPower(0);
+            }else {
             // Omni-drive is controlled by three axes: drive (forward/backward), strafe (left/right), and turn (rotation)
             double drive = -gamepad2.left_stick_y; // Controls forward and backward movement
             double strafe = gamepad2.left_stick_x;  // Controls side-to-side movement
