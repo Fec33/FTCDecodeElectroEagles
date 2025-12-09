@@ -18,7 +18,7 @@ public class AutonomousA extends LinearOpMode {
     private CRServo servoShoot2 = null;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
 
 // Initialize hardware
         leftDrive = hardwareMap.get(DcMotor.class, "left_drive");
@@ -40,6 +40,52 @@ public class AutonomousA extends LinearOpMode {
 
         // Run autonomous actions until 27 seconds have passed
         while (opModeIsActive() && runtime.seconds() < 27) {
+            ShootMotor.setPower(-0.65);
+            leftDrive.setPower(0.8);
+            rightDrive.setPower(0.8);
+            wait(1500);
+            leftDrive.setPower(0.8);
+            rightDrive.setPower(-0.8);
+            wait(100);
+            leftDrive.setPower(0.8);
+            rightDrive.setPower(0.8);
+            wait(500);
+            leftDrive.setPower(0.0);
+            rightDrive.setPower(0.0);
+            wait(10);
+            servoShoot1.setPower(-0.5);
+            servoShoot2.setPower(0.5);
+            wait(300);
+            servoShoot1.setPower(0.0);
+            servoShoot2.setPower(0.0);
+            wait(300);
+            servoShoot1.setPower(-0.5);
+            servoShoot2.setPower(0.5);
+            wait(300);
+            servoShoot1.setPower(0.0);
+            servoShoot2.setPower(0.0);
+            wait(300);
+            servoShoot1.setPower(-0.5);
+            servoShoot2.setPower(0.5);
+            wait(300);
+            servoShoot1.setPower(0.0);
+            servoShoot2.setPower(0.0);
+            wait(300);
+            leftDrive.setPower(-0.8);
+            rightDrive.setPower(-0.8);
+            wait(300);
+            leftDrive.setPower(-0.8);
+            rightDrive.setPower(0.8);
+            wait(100);
+            leftDrive.setPower(-0.8);
+            rightDrive.setPower(-0.8);
+            wait(1500);
+            leftDrive.setPower(0.0);
+            rightDrive.setPower(0.0);
+            wait(12000);
 
 
         }
+        stop();
+    }
+}
