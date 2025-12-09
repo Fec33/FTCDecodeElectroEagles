@@ -83,8 +83,7 @@ public class BasicTeleOp extends LinearOpMode {
             telemetry.addData("Left Power", leftPower);
             telemetry.addData("Right Power", rightPower);
             telemetry.addData("Shooter Power", ShootMotor.getPower());
-            telemetry.addData("Servo 1 Power", servoShoot1.getPower());
-            telemetry.addData("Servo 2 Power", servoShoot2.getPower());
+            telemetry.addData("Servo 1 Power", servoShoot1.getPower());telemetry.addData("Servo 2 Power", servoShoot2.getPower());
             telemetry.update();
         }
     }
