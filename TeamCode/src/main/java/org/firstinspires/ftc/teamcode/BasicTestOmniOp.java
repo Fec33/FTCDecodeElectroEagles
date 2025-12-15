@@ -67,8 +67,8 @@ public class BasicTestOmniOp extends LinearOpMode {
                 // Combine the joystick inputs into Mecanum drive powers
                 double frontLeftPower = (drive * 0.8) + strafe + turn;
                 double frontRightPower = (drive * 0.8) - strafe - turn;
-                double backLeftPower = (drive * 0.8 * 0.052) - strafe + turn;
-                double backRightPower = (drive * 0.8 * 0.052) + strafe - turn;
+                double backLeftPower = (drive * 0.8 ) - strafe + turn;
+                double backRightPower = (drive * 0.8) + strafe - turn;
 
                 // Normalize the values so no wheel power exceeds 1.0
                 double maxPower = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
