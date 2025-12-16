@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="BasicTestOmniOp", group="Linear Opmode")
 public class BasicTestOmniOp extends LinearOpMode {
@@ -19,11 +19,16 @@ public class BasicTestOmniOp extends LinearOpMode {
     private CRServo servoShoot1 = null;
     private CRServo servoShoot2 = null;
 
+    // Timer for the shooter
+    private ElapsedTime shooterTimer = new ElapsedTime();
+    private boolean shooterActive = false;
+
+    private static final double SHOOT_TIME_SECONDS = 0.1; // Run shooter for 1 second
+
     @Override
     public void runOpMode() {
 
-// Initialize hardware
-        // Make sure to match the names in your robot's configuration
+        // Initialize hardware
         frontLeftDrive = hardwareMap.get(DcMotor.class, "front_left_drive");
         frontRightDrive = hardwareMap.get(DcMotor.class, "front_right_drive");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back_left_drive");
@@ -32,45 +37,38 @@ public class BasicTestOmniOp extends LinearOpMode {
         servoShoot1 = hardwareMap.get(CRServo.class, "Servo_Shoot_1");
         servoShoot2 = hardwareMap.get(CRServo.class, "Servo_Shoot_2");
 
-
-// Set motor directions for an Omni-wheel (Mecanum) drive
-        // You may need to change these FORWARD/REVERSE values depending on your robot's build
+        // Set motor directions for an Omni-wheel (Mecanum) drive
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
-
-        ShootMotor.setDirection(DcMotor.Direction.REVERSE); // Set shooter motor direction
+        ShootMotor.setDirection(DcMotor.Direction.REVERSE);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-// Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-// Run until the end of the match (driver presses STOP)
-        while (opModeIsActive()){
-            if (gamepad2.right_bumper) {
+        while (opModeIsActive()) {
+            if (gamepad2.left_bumper) { // Emergency stop
                 frontLeftDrive.setPower(0);
                 frontRightDrive.setPower(0);
                 backLeftDrive.setPower(0);
                 backRightDrive.setPower(0);
                 ShootMotor.setPower(0);
-                servoShoot2.setPower(0);
                 servoShoot1.setPower(0);
-            }else {
-                // Omni-drive is controlled by three axes: drive (forward/backward), strafe (left/right), and turn (rotation)
-                double drive = -gamepad2.left_stick_y; // Controls forward and backward movement
-                double strafe = gamepad2.left_stick_x;  // Controls side-to-side movement
-                double turn = gamepad2.right_stick_x;   // Controls robot rotation
+                servoShoot2.setPower(0);
+            } else {
+                // Omni-drive controls
+                double drive = -gamepad2.left_stick_y;
+                double strafe = gamepad2.left_stick_x;
+                double turn = gamepad2.right_stick_x;
 
-                // Combine the joystick inputs into Mecanum drive powers
                 double frontLeftPower = (drive * 0.8) + strafe + turn;
                 double frontRightPower = (drive * 0.8) - strafe - turn;
-                double backLeftPower = (drive * 0.8 ) - strafe + turn;
+                double backLeftPower = (drive * 0.8) - strafe + turn;
                 double backRightPower = (drive * 0.8) + strafe - turn;
 
-                // Normalize the values so no wheel power exceeds 1.0
                 double maxPower = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
                 maxPower = Math.max(maxPower, Math.abs(backLeftPower));
                 maxPower = Math.max(maxPower, Math.abs(backRightPower));
@@ -82,43 +80,32 @@ public class BasicTestOmniOp extends LinearOpMode {
                     backRightPower /= maxPower;
                 }
 
-// Set motor power for all four wheels
                 frontLeftDrive.setPower(frontLeftPower);
                 frontRightDrive.setPower(frontRightPower);
                 backLeftDrive.setPower(backLeftPower);
                 backRightDrive.setPower(backRightPower);
 
-// Keep shooter motor running at all times
-                ShootMotor.setPower(0.65);
+                ShootMotor.setPower(0.65); // Keep shooter motor running
 
-// Set servo power when right bumper is pressed
                 // --- Timed Servo Shooter Logic ---
-
-// Check if the bumper is pressed now AND the shooter is not already running
                 if (gamepad1.right_bumper && !shooterActive) {
-                    // Set the state to active and reset the timer    shooterActive = true;
+                    shooterActive = true;
                     shooterTimer.reset();
                 }
 
-// This block manages the state of the shooter
                 if (shooterActive) {
-                    // Check if the timer has exceeded our desired shoot time
                     if (shooterTimer.seconds() < SHOOT_TIME_SECONDS) {
-                        // If not, keep the servos running
                         servoShoot1.setPower(-0.5);
                         servoShoot2.setPower(0.5);
                     } else {
-                        // Time is up, so stop the servos and reset the state to allow another shot
                         servoShoot1.setPower(0.0);
                         servoShoot2.setPower(0.0);
                         shooterActive = false;
                     }
                 }
-// --- End of Timed Servo Logic ---
+                // --- End of Timed Servo Logic ---
 
-
-
-// Show telemetry data
+                // Telemetry data
                 telemetry.addData("Left Stick Y (Drive)", drive);
                 telemetry.addData("Left Stick X (Strafe)", strafe);
                 telemetry.addData("Right Stick X (Turn)", turn);
@@ -129,7 +116,9 @@ public class BasicTestOmniOp extends LinearOpMode {
                 telemetry.addData("Shooter Power", ShootMotor.getPower());
                 telemetry.addData("Servo 1 Power", servoShoot1.getPower());
                 telemetry.addData("Servo 2 Power", servoShoot2.getPower());
+                telemetry.addData("Shooter Timer", shooterTimer.seconds());
                 telemetry.update();
             }
         }
     }
+}
