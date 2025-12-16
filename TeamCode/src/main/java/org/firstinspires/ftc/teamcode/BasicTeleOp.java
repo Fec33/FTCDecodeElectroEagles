@@ -67,14 +67,22 @@ public class BasicTeleOp extends LinearOpMode {
                 rightDrive.setPower(rightPower);
                 ShootMotor.setPower(-0.65);
 // Set shooter motor power when right trigger is pressed
-                if (gamepad2.right_bumper) { // Check if the trigger value is > 0.5
-                    servoShoot1.setPower(-0.5);
-                    servoShoot2.setPower(0.5);
-                } else {
-                    servoShoot1.setPower(0);
-                    servoShoot2.setPower(0);
+                // --- Timed Servo Shooter Logic ---
+                if (gamepad1.right_bumper && !shooterActive) {
+                    shooterActive = true;
+                    shooterTimer.reset();
                 }
-            }
+
+                if (shooterActive) {
+                    if (shooterTimer.seconds() < SHOOT_TIME_SECONDS) {
+                        servoShoot1.setPower(-0.5);
+                        servoShoot2.setPower(0.5);
+                    } else {
+                        servoShoot1.setPower(0.0);
+                        servoShoot2.setPower(0.0);
+                        shooterActive = false;
+                    }
+                }
 
 
 // Show telemetry data
