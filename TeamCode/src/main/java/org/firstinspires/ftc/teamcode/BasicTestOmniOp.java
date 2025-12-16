@@ -92,13 +92,30 @@ public class BasicTestOmniOp extends LinearOpMode {
                 ShootMotor.setPower(0.65);
 
 // Set servo power when right bumper is pressed
-                if (gamepad2.right_bumper) { // Check if the trigger value is > 0.5
-                    servoShoot1.setPower(-0.5);
-                    servoShoot2.setPower(0.5);
-                } else {
-                    servoShoot1.setPower(0.0);
-                    servoShoot2.setPower(0.0);
+                // --- Timed Servo Shooter Logic ---
+
+// Check if the bumper is pressed now AND the shooter is not already running
+                if (gamepad1.right_bumper && !shooterActive) {
+                    // Set the state to active and reset the timer    shooterActive = true;
+                    shooterTimer.reset();
                 }
+
+// This block manages the state of the shooter
+                if (shooterActive) {
+                    // Check if the timer has exceeded our desired shoot time
+                    if (shooterTimer.seconds() < SHOOT_TIME_SECONDS) {
+                        // If not, keep the servos running
+                        servoShoot1.setPower(-0.5);
+                        servoShoot2.setPower(0.5);
+                    } else {
+                        // Time is up, so stop the servos and reset the state to allow another shot
+                        servoShoot1.setPower(0.0);
+                        servoShoot2.setPower(0.0);
+                        shooterActive = false;
+                    }
+                }
+// --- End of Timed Servo Logic ---
+
 
 
 // Show telemetry data
