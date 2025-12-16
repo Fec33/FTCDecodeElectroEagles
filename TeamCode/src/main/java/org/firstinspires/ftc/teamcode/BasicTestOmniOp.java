@@ -85,7 +85,7 @@ public class BasicTestOmniOp extends LinearOpMode {
                 backLeftDrive.setPower(backLeftPower);
                 backRightDrive.setPower(backRightPower);
 
-                ShootMotor.setPower(0.65); // Keep shooter motor running
+                ShootMotor.setPower(0.65 * 0.052); // Keep shooter motor running
 
                 // --- Timed Servo Shooter Logic ---
                 if (gamepad1.right_bumper && !shooterActive) {
