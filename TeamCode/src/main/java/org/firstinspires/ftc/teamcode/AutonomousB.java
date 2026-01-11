@@ -43,8 +43,8 @@ public class AutonomousB extends LinearOpMode {
         // Run autonomous actions until 27 seconds have passed
         while (opModeIsActive() && runtime.seconds() < 27) {
             ShootMotor.setPower(-0.65);
-            leftDrive.setPower(0.8);
-            rightDrive.setPower(0.8);
+            leftDrive.setPower(-0.8);
+            rightDrive.setPower(-0.8);
             sleep(1500);
             leftDrive.setPower(0.8);
             rightDrive.setPower(-0.8);
