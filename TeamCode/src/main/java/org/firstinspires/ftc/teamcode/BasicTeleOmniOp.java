@@ -50,7 +50,7 @@ public class BasicTeleOmniOp extends LinearOpMode {
 
 // Run until the end of the match (driver presses STOP)
         while (opModeIsActive()){
-            // Using left_bumper for emergency stop
+            // Use left bumper for emergency stop
             if (gamepad2.left_bumper) {
                 frontLeftDrive.setPower(0);
                 frontRightDrive.setPower(0);
@@ -93,7 +93,7 @@ public class BasicTeleOmniOp extends LinearOpMode {
                 ShootMotor.setPower(0.65);
 
 // Set servo power when right bumper is pressed
-                if (gamepad2.right_bumper) { // Now this will work
+                if (gamepad2.right_bumper) { // This will now work correctly
                     servoShoot1.setPower(-0.5);
                     servoShoot2.setPower(0.5);
                 } else {

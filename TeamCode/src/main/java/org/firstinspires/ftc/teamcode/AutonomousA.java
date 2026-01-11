@@ -17,6 +17,8 @@ public class AutonomousA extends LinearOpMode {
     private CRServo servoShoot1 = null;
     private CRServo servoShoot2 = null;
 
+    private ElapsedTime runtime = new ElapsedTime();
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -43,46 +45,46 @@ public class AutonomousA extends LinearOpMode {
             ShootMotor.setPower(-0.65);
             leftDrive.setPower(0.8);
             rightDrive.setPower(0.8);
-            wait(1500);
+            sleep(1500);
             leftDrive.setPower(0.8);
             rightDrive.setPower(-0.8);
-            wait(100);
+            sleep(100);
             leftDrive.setPower(0.8);
             rightDrive.setPower(0.8);
-            wait(500);
+            sleep(500);
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
-            wait(10);
+            sleep(10);
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
-            wait(300);
+            sleep(1000);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
-            wait(300);
+            sleep(300);
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
-            wait(300);
+            sleep(1000);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
-            wait(300);
+            sleep(300);
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
-            wait(300);
+            sleep(1000);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
-            wait(300);
+            sleep(300);
             leftDrive.setPower(-0.8);
             rightDrive.setPower(-0.8);
-            wait(300);
+            sleep(300);
             leftDrive.setPower(-0.8);
             rightDrive.setPower(0.8);
-            wait(100);
+            sleep(100);
             leftDrive.setPower(-0.8);
             rightDrive.setPower(-0.8);
-            wait(1500);
+            sleep(1500);
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
-            wait(12000);
+            sleep(12000);
 
 
         }
