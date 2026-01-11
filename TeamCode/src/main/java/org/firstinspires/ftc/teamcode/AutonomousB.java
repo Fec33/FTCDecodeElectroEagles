@@ -70,9 +70,6 @@ public class AutonomousB extends LinearOpMode {
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
             sleep(300);
-
-
-
         }
         stop();
     }
