@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name="Basic TeleOp2", group="Linear Opmode")
-public class BasicTeleOp2 extends LinearOpMode {
+@TeleOp(name="Basic TeleOp 2 people", group="Linear Opmode")
+public class BasicTeleOpBi extends LinearOpMode {
     // Declare motors
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -56,8 +56,8 @@ public class BasicTeleOp2 extends LinearOpMode {
                 rightPower = 0.0; // Set for telemetry
             }else {
 // Use left stick for forward/back, right stick for turning
-                drive = -gamepad2.left_stick_y; // Forward is negative on joystick
-                turn = gamepad2.right_stick_x;
+                drive = -gamepad1.left_stick_y; // Forward is negative on joystick
+                turn = gamepad1.right_stick_x;
 
 
 // Combine drive and turn for differential steering
@@ -77,12 +77,6 @@ public class BasicTeleOp2 extends LinearOpMode {
                     servoShoot2.setPower(0.0);
                 }
             }
-
-            if (gamepad2.left_bumper) {
-                ShootMotor.setPower(0.8);
-                servoShoot1.setPower(-0.5);
-                servoShoot2.setPower(0.5);
-        }
 
 
 // Show telemetry data

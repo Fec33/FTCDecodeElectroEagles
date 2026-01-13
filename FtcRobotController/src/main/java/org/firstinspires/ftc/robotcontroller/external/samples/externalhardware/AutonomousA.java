@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.external.samples.externalhardware;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -22,85 +22,90 @@ public class AutonomousA extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-// Initialize hardware
+        // Initialize hardware
         leftDrive = hardwareMap.get(DcMotor.class, "left_drive");
         rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
         ShootMotor = hardwareMap.get(DcMotor.class, "shoot_motor");
         servoShoot1 = hardwareMap.get(CRServo.class, "Servo_Shoot_1");
         servoShoot2 = hardwareMap.get(CRServo.class, "Servo_Shoot_2");
 
-
-// Reverse one motor so that forward power moves both wheels forward
+        // Reverse one motor so that forward power moves both wheels forward
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         ShootMotor.setDirection(DcMotor.Direction.FORWARD); // Set shooter motor direction
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+        
         waitForStart();
         runtime.reset();
 
+        // Start the shooter motor immediately and keep it running throughout autonomous
+        ShootMotor.setPower(0.9);
+
         // Run autonomous actions until 27 seconds have passed
         while (opModeIsActive() && runtime.seconds() < 27) {
-            ShootMotor.setPower(-0.65);
+
             leftDrive.setPower(0.8);
             rightDrive.setPower(0.8);
             sleep(1500);
-            ShootMotor.setPower(-0.65);
+            
             leftDrive.setPower(0.8);
             rightDrive.setPower(-0.8);
-            sleep(100);
-            ShootMotor.setPower(-0.65);
+            sleep(300);
+            
             leftDrive.setPower(0.8);
             rightDrive.setPower(0.8);
-            sleep(500);
-            ShootMotor.setPower(-0.65);
+            sleep(700);
+            
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
             sleep(10);
-            ShootMotor.setPower(-0.65);
+            
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
-            sleep(1000);
-            ShootMotor.setPower(-0.65);
+            sleep(5000);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
             sleep(300);
-            ShootMotor.setPower(-0.65);
+            
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
-            sleep(1000);
-            ShootMotor.setPower(-0.65);
+            sleep(5000);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
             sleep(300);
-            ShootMotor.setPower(-0.65);
+            
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
-            sleep(1000);
-            ShootMotor.setPower(-0.65);
+            sleep(5000);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
             sleep(300);
-            ShootMotor.setPower(-0.65);
+            
             leftDrive.setPower(-0.8);
             rightDrive.setPower(-0.8);
             sleep(300);
-            ShootMotor.setPower(-0.65);
+            
             leftDrive.setPower(-0.8);
             rightDrive.setPower(0.8);
             sleep(100);
-            ShootMotor.setPower(-0.65);
+            
             leftDrive.setPower(-0.8);
             rightDrive.setPower(-0.8);
             sleep(1500);
-            ShootMotor.setPower(-0.65);
+            
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
             sleep(12000);
 
-
+            // Break the loop if the sequence finished
+            break;
         }
-        stop();
+        
+        // Turn off all motors at the end
+        ShootMotor.setPower(0);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
     }
 }

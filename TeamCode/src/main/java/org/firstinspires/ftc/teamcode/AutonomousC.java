@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="AutonomousB", group="Autonomous")
-public class AutonomousB extends LinearOpMode {
+@Autonomous(name="AutonomousC", group="Autonomous")
+public class AutonomousC extends LinearOpMode {
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -41,11 +41,11 @@ public class AutonomousB extends LinearOpMode {
         runtime.reset();
 
 
-        ShootMotor.setPower(0.65);
+        ShootMotor.setPower(0.8);
         while (opModeIsActive() && runtime.seconds() < 27) {
-            leftDrive.setPower(-0.8);
-            rightDrive.setPower(-0.8);
-            sleep(700);
+            leftDrive.setPower(-0.5);
+            rightDrive.setPower(0.5);
+            sleep(175);
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
             sleep(7000);
@@ -66,12 +66,10 @@ public class AutonomousB extends LinearOpMode {
             sleep(300);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
-            sleep(2000);
-            leftDrive.setPower(0.8);
-            rightDrive.setPower(0.8);
-            sleep(700);
+            sleep(20000);
         }
         stop();
     }
 }
+
 
