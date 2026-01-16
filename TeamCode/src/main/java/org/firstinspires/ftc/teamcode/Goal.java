@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="AutonomousB", group="Autonomous")
-public class AutonomousB extends LinearOpMode {
+@Autonomous(name="Goal", group="Autonomous")
+public class Goal extends LinearOpMode {
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;

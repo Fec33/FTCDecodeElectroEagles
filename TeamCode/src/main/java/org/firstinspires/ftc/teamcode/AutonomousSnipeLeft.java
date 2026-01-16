@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="AutonomousD", group="Autonomous")
-public class AutonomousD extends LinearOpMode {
+@Autonomous(name="AutonomousSnipeLeft", group="Autonomous")
+public class AutonomousSnipeLeft extends LinearOpMode {
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -45,7 +45,7 @@ public class AutonomousD extends LinearOpMode {
         while (opModeIsActive() && runtime.seconds() < 27) {
             leftDrive.setPower(0.5);
             rightDrive.setPower(-0.5);
-            sleep(175);
+            sleep(150);
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
             sleep(7000);
