@@ -54,7 +54,13 @@ public class AutonomousSnipeLeft extends LinearOpMode {
             sleep(300);
             servoShoot1.setPower(0.0);
             servoShoot2.setPower(0.0);
-            sleep(2000);
+            sleep(1000);
+            leftDrive.setPower(0.5);
+            rightDrive.setPower(-0.5);
+            sleep(50);
+            leftDrive.setPower(0.0);
+            rightDrive.setPower(0.0);
+            sleep(10);
             servoShoot1.setPower(-0.5);
             servoShoot2.setPower(0.5);
             sleep(200);
