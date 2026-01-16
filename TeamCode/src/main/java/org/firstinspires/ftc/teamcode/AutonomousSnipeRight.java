@@ -45,7 +45,7 @@ public class AutonomousSnipeRight extends LinearOpMode {
         while (opModeIsActive() && runtime.seconds() < 27) {
             leftDrive.setPower(-0.5);
             rightDrive.setPower(0.5);
-            sleep(150);
+            sleep(200);
             leftDrive.setPower(0.0);
             rightDrive.setPower(0.0);
             sleep(7000);
